@@ -1312,27 +1312,38 @@ document.querySelectorAll('.card-prod').forEach(card => {
     });
 });
 
-// ============ PARTE 3: ANTI-BOTS BÁSICO ============
+// ============ PARTE 3: ANTI-BOTS BÁSICO (CORREGIDO PARA MÓVILES) ============
 // Para qué sirve: Esconde botones de pago hasta verificar que es humano
-let clicksReales = 0;
+let isLikelyHuman = false;
 
-// Contar movimientos del mouse (los bots no mueven el mouse)
-document.addEventListener('mousemove', function() {
-    clicksReales++;
-});
+function confirmHumanActivity() {
+    if (isLikelyHuman) return;
+    isLikelyHuman = true;
+    
+    // Una vez que hay interacción, activar todos los botones
+    document.querySelectorAll('.btn-pay').forEach(btn => {
+        btn.style.opacity = '1';
+        btn.style.pointerEvents = 'auto';
+    });
+}
 
-// Ocultar botones inicialmente y mostrar después de verificar
+// Escuchar por el PRIMER movimiento de mouse O el PRIMER toque en pantalla
+document.addEventListener('mousemove', confirmHumanActivity, { once: true });
+document.addEventListener('touchstart', confirmHumanActivity, { once: true });
+document.addEventListener('touchmove', confirmHumanActivity, { once: true });
+
+// Ocultar todos los botones al cargar la página
 document.querySelectorAll('.btn-pay').forEach(btn => {
     btn.style.opacity = '0.3';
     btn.style.pointerEvents = 'none';
-    
-    setTimeout(() => {
-        if(clicksReales > 3) { // Si movió el mouse más de 3 veces
-            btn.style.opacity = '1';
-            btn.style.pointerEvents = 'auto';
-        }
-    }, 1500); // Espera 1.5 segundos
 });
+
+// Backup: activar después de 2 segundos si no hay interacción
+setTimeout(() => {
+    if (!isLikelyHuman) {
+        confirmHumanActivity();
+    }
+}, 2000);
 
 // ============ PARTE 4: PREVENIR SPAM DE COMPRAS ============
 // Para qué sirve: Evita que alguien haga clic 100 veces seguidas
