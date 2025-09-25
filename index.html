@@ -15,29 +15,13 @@
   --blanco:#FFFFFF;
   --card:#063C6F;
   --card-hover:#085092;
+  --verde-tienda:#00C896;
+  --verde-hover:#00A67C;
+  --morado-curso:#8B5CF6;
+  --morado-hover:#7C3AED;
   --suave:.25s ease;
   --radius:18px;
   scroll-behavior:smooth;
-}
-@media (max-width:768px){
-  /* HEADER */
-  #logo{height:140px;}
-  .cta-wsp{
-    top:8px;
-    right:8px;
-    padding:4px 10px;
-    font-size:.75rem;
-    border-radius:24px;
-    white-space:nowrap;
-  }
-}          /* ← 1️⃣  ESTA ES LA LLAVE QUE FALTABA  */
-
-/* si quieres versión súper compacta en pantallas muy angostas */
-@media (max-width:430px){
-  .cta-wsp{
-    font-size:.7rem;
-    padding:3px 8px;
-  }
 }
 
 /* RESET */
@@ -49,17 +33,29 @@ body{
   background:#04263D;
   color:#fff;
   line-height:1.5;
+  padding-top:0;
 }
 
 /* FRANJA */
 .top-bar{background:var(--azul-cielo);height:18px;}
 
-/* HEADER */
+/* HEADER CON AUTO-HIDE MEJORADO */
 header{
   background:var(--azul-marino);
-  position:sticky;top:0;z-index:999;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:999;
   box-shadow:0 2px 6px rgba(0,0,0,.35);
+  transition:transform .35s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change:transform;
 }
+
+header.hide{
+  transform:translateY(-100%);
+}
+
 header .wrap{
   max-width:1200px;margin:auto;
   padding:18px 20px 14px;
@@ -96,7 +92,10 @@ header .cta-wsp{
 header .cta-wsp:hover{transform:scale(1.05);}
 
 /* SECCIONES */
-section{padding:80px 20px;scroll-margin-top:140px;}
+section{
+  padding:80px 20px;
+  scroll-margin-top:100px;
+}
 .container{max-width:1200px;margin:auto;}
 h1,h2,h3{font-weight:700;line-height:1.2;}
 h1{font-size:2.6rem;margin-bottom:18px;text-align:center;}
@@ -113,22 +112,162 @@ p{margin-bottom:14px;font-size:1rem;text-align:center;}
 .btn:hover{transform:translateY(-3px);}
 
 /* HERO */
-#inicio{text-align:center;background:var(--azul-marino);padding-top:120px;}
+#inicio{
+  text-align:center;
+  background:var(--azul-marino);
+  padding-top:320px;  /* Espacio correcto para el header */
+  margin-top:0;
+}
 #inicio p{max-width:680px;margin:0 auto 28px;}
 .hero-buttons{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
 
-/* SERVICIOS */
-#servicios .grid{
-  display:flex;flex-wrap:wrap;gap:28px;justify-content:center;
+/* SERVICIOS REORGANIZADOS */
+#servicios .grid-top{
+  display:flex;
+  flex-wrap:wrap;
+  gap:28px;
+  justify-content:center;
+  margin-bottom:28px;
 }
+
+#servicios .grid-bottom{
+  display:flex;
+  flex-wrap:wrap;
+  gap:28px;
+  justify-content:center;
+}
+
 .card-servicio{
-  background:var(--card);padding:32px 26px;border-radius:var(--radius);
-  width:280px;text-align:center;
+  background:var(--card);
+  padding:32px 26px;
+  border-radius:var(--radius);
+  width:280px;
+  text-align:center;
   box-shadow:0 4px 10px rgba(0,0,0,.3);
   transition:background var(--suave), transform var(--suave);
 }
-.card-servicio:hover{background:var(--card-hover);transform:translateY(-6px);}
-.card-servicio .emoji{font-size:2rem;display:block;margin-bottom:12px;}
+.card-servicio:hover{
+  background:var(--card-hover);
+  transform:translateY(-6px);
+}
+.card-servicio .emoji{
+  font-size:2rem;
+  display:block;
+  margin-bottom:12px;
+}
+
+/* TARJETAS ESPECIALES PARA TIENDA Y CAPACITACIONES */
+.card-especial{
+  background:linear-gradient(135deg, var(--verde-tienda) 0%, var(--verde-hover) 100%);
+  padding:36px 30px;
+  border-radius:var(--radius);
+  width:340px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(0,0,0,.4);
+  transition:all var(--suave);
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+
+.card-especial.capacitacion{
+  background:linear-gradient(135deg, var(--morado-curso) 0%, var(--morado-hover) 100%);
+}
+
+.card-especial::before{
+  content:"";
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:rgba(255,255,255,0.1);
+  transform:rotate(45deg);
+  transition:all 0.6s;
+  opacity:0;
+}
+
+.card-especial:hover::before{
+  animation:shine 0.5s ease-in-out;
+}
+
+@keyframes shine{
+  0%{transform:translateX(-100%) translateY(-100%) rotate(45deg);}
+  100%{transform:translateX(100%) translateY(100%) rotate(45deg);}
+}
+
+.card-especial:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+.card-especial .emoji{
+  font-size:3rem;
+  display:block;
+  margin-bottom:16px;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+}
+
+.card-especial h3{
+  font-size:1.5rem;
+  margin-bottom:12px;
+  color:#fff;
+}
+
+.card-especial p{
+  color:rgba(255,255,255,0.95);
+  font-size:1.05rem;
+  margin-bottom:16px;
+}
+
+.card-especial .cta-text{
+  display:inline-block;
+  background:rgba(255,255,255,0.2);
+  padding:8px 20px;
+  border-radius:20px;
+  font-weight:600;
+  color:#fff;
+  transition:all var(--suave);
+}
+
+.card-especial:hover .cta-text{
+  background:rgba(255,255,255,0.3);
+  transform:scale(1.05);
+}
+
+/* SECCIÓN TIENDA Y CAPACITACIONES */
+#tienda-capacitaciones{
+  background:linear-gradient(135deg, #04263D 0%, #063C6F 100%);
+  padding:100px 20px;
+  position:relative;
+}
+
+#tienda-capacitaciones::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg, transparent, var(--azul-cielo), transparent);
+}
+
+#tienda-capacitaciones h2{
+  margin-bottom:50px;
+  font-size:2.3rem;
+}
+
+#tienda-capacitaciones .grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:40px;
+  justify-content:center;
+}
 
 /* GALERÍA */
 #galeria .track{
@@ -194,7 +333,7 @@ footer .social a:hover{opacity:1;transform:translateY(-2px);}
   height:60px;
   bottom:32px;
   right:28px;
-  background:#25D366;  /* CAMBIADO A NEGRO */
+  background:#25D366;
   border-radius:50%;
   box-shadow:0 4px 10px rgba(0,0,0,.35);
   display:flex;
@@ -206,12 +345,11 @@ footer .social a:hover{opacity:1;transform:translateY(-2px);}
 }
 .whatsapp-float:hover{
   transform:scale(1.08);
-  background:#1DA851;  /* Negro un poco más claro al hover */
+  background:#1DA851;
 }
 
-/* Para que el ícono de WhatsApp sea blanco */
 .whatsapp-float img{
-  filter: brightness(0) invert(1);  /* Convierte cualquier color a blanco */
+  filter: brightness(0) invert(1);
 }
 
 /* FADES */
@@ -219,37 +357,77 @@ footer .social a:hover{opacity:1;transform:translateY(-2px);}
 [data-fade="2"]{animation-delay:.15s;}
 [data-fade="3"]{animation-delay:.3s;}
 [data-fade="4"]{animation-delay:.45s;}
-/* ======== AUTO-HIDE HEADER ======== */
-header{
-  transition:transform .35s ease;
-  will-change:transform;
-}
-header.hide{
-  transform:translateY(-100%);
-}
-@keyframes fadeUp{to{opacity:1;transform:none;}}
-/* ────── RESPONSIVE ≤ 768 px ────── */
-@media (max-width:768px){   
 
+@keyframes fadeUp{to{opacity:1;transform:none;}}
+
+/* RESPONSIVE MEJORADO */
+@media (max-width:768px){
+  /* HEADER */
+  #logo{height:140px;}
+  header .cta-wsp{
+    top:8px;
+    right:8px;
+    padding:4px 10px;
+    font-size:.75rem;
+    border-radius:24px;
+    white-space:nowrap;
+  }
   
   nav ul{gap:14px;font-size:.88rem;}
 
-  /* HERO */
-  #inicio{padding-top:80px;}          /* menos aire arriba */
+/* HERO */
+  #inicio{
+    padding-top:240px;  /* Espacio adecuado en móvil */
+  }
   h1{font-size:2rem;}
   .hero-buttons{flex-direction:column;gap:12px;}
 
-  /* SERVICIOS */
-  #servicios .grid{
-    flex-direction:column;align-items:center;
+  /* SERVICIOS - VISTA MÓVIL MEJORADA */
+  #servicios .grid-top{
+    display:grid;
+    grid-template-columns:1fr;  /* Una columna en móvil */
+    gap:20px;
+    max-width:400px;
+    margin:0 auto 20px;
   }
+  
+  #servicios .grid-bottom{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);  /* 2 columnas para los 2 servicios */
+    gap:16px;
+    max-width:400px;
+    margin:0 auto;
+  }
+  
   .card-servicio{
-    width:100%;max-width:340px;
-    padding:26px 22px;
+    width:100%;
+    padding:24px 20px;
   }
+  
+  .card-servicio .emoji{font-size:1.8rem;}
+  .card-servicio h3{font-size:1.1rem;}
+  .card-servicio p{font-size:0.9rem;}
+
+  /* TARJETAS ESPECIALES */
+  #tienda-capacitaciones .grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:24px;
+    max-width:400px;
+    margin:0 auto;
+  }
+  
+  .card-especial{
+    width:100%;
+    padding:28px 24px;
+  }
+  
+  .card-especial .emoji{font-size:2.5rem;}
+  .card-especial h3{font-size:1.3rem;}
+  .card-especial p{font-size:0.95rem;}
 
   /* GALERÍA */
-  #galeria img{height:220px;}         /* un poco más bajita */
+  #galeria img{height:220px;}
 
   /* CONTACTO */
   #contacto form{gap:14px;}
@@ -263,15 +441,43 @@ header.hide{
   /* FOOTER */
   footer{font-size:.8rem;padding:32px 20px 48px;}
 }
-/* ─── fin media query ─── */
 
+/* ULTRA MOBILE (para iPhone SE y dispositivos muy pequeños) */
+@media (max-width:430px){
+  header .cta-wsp{
+    font-size:.7rem;
+    padding:3px 8px;
+  }
+  
+  /* Los 3 primeros en columna */
+  #servicios .grid-top{
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+  
+  /* Los 2 últimos en fila */
+  #servicios .grid-bottom{
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+  }
+  
+  .card-servicio{
+    padding:20px 15px;
+  }
+  
+  .card-servicio .emoji{font-size:1.6rem;}
+  .card-servicio h3{font-size:1rem;}
+  .card-servicio p{font-size:0.85rem;line-height:1.3;}
+}
+
+/* ACCESIBILIDAD */
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;}
 }
 
-/* ===== Banner pop-up ===== */
+/* Banner pop-up */
 #mxBanner{
-  position:fixed;           /* siempre visible */
+  position:fixed;
   bottom:20px; left:50%; transform:translateX(-50%);
   max-width:500px; width:90%;
   background:var(--card); color:#fff;
@@ -279,7 +485,7 @@ header.hide{
   border-radius:14px; padding:18px 48px 18px 20px;
   box-shadow:0 4px 14px rgba(0,0,0,.45);
   font-size:.95rem; line-height:1.4;
-  z-index:2000;             /* por encima de todo */
+  z-index:2000;
 }
 #mxBanner button{
   position:absolute; top:6px; right:10px;
@@ -291,7 +497,6 @@ header.hide{
 @media(max-width:480px){
   #mxBanner{font-size:.85rem;padding:16px 42px 16px 18px;}
 }
-
 </style>
 </head>
 
@@ -306,14 +511,15 @@ header.hide{
     </div>
 
     <a href="https://wa.me/3315351832" target="_blank" class="cta-wsp">
-  <img src="img/social/whatsapp_navy.svg" alt="WhatsApp" width="20" height="20" style="display:inline-block;vertical-align:middle;margin-right:4px;">
-  Cotiza por WhatsApp
-</a>
+      <img src="img/social/whatsapp_navy.svg" alt="WhatsApp" width="20" height="20" style="display:inline-block;vertical-align:middle;margin-right:4px;">
+      Cotiza por WhatsApp
+    </a>
 
     <nav aria-label="Principal">
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#tienda-capacitaciones">Tienda</a></li>
         <li><a href="#galeria">Galería</a></li>
         <li><a href="#contacto">Contacto</a></li>
         <li><a href="https://wa.me/3315351832" target="_blank">WhatsApp</a></li>
@@ -334,11 +540,13 @@ header.hide{
   </div>
 </section>
 
-<!-- SERVICIOS -->
+<!-- SERVICIOS REORGANIZADOS -->
 <section id="servicios">
   <div class="container">
-    <h2 data-fade>Servicios que ofrecemos</h2>
-    <div class="grid">
+    <h2 data-fade>Servicios Profesionales</h2>
+    
+    <!-- Primera fila: 3 servicios principales -->
+    <div class="grid-top">
       <article class="card-servicio" data-fade="1">
         <span class="emoji">🧼</span>
         <h3>Mantenimiento de albercas</h3>
@@ -356,7 +564,10 @@ header.hide{
         <h3>Cambio de arena</h3>
         <p>Reemplazo de arena para un mejor filtrado.</p>
       </article>
-
+    </div>
+    
+    <!-- Segunda fila: 2 servicios centrados -->
+    <div class="grid-bottom">
       <article class="card-servicio" data-fade="4">
         <span class="emoji">🛠️</span>
         <h3>Reparaciones profesionales</h3>
@@ -368,17 +579,30 @@ header.hide{
         <h3>Venta de equipos</h3>
         <p>Bombas, filtros y automatización.</p>
       </article>
+    </div>
+  </div>
+</section>
 
-      <a href="quimicos.html" class="card-servicio" data-fade="3">
-  <span class="emoji">🧪</span>
-  <h3>Venta de químicos</h3>
-  <p>Productos certificados como Klaren y Bluequim.</p>
-</a>
+<!-- NUEVA SECCIÓN: TIENDA Y CAPACITACIONES -->
+<section id="tienda-capacitaciones">
+  <div class="container">
+    <h2 data-fade>Productos y Formación Profesional</h2>
+    
+    <div class="grid">
+      <!-- Tarjeta Tienda de Químicos -->
+      <a href="quimicos.html" class="card-especial" data-fade="1">
+        <span class="emoji">🧪</span>
+        <h3>Tienda de Químicos</h3>
+        <p>Productos certificados como Klaren y Bluequim para el cuidado perfecto de tu alberca</p>
+        <span class="cta-text">Ver catálogo completo →</span>
+      </a>
 
-      <a href="capacitaciones.html" class="card-servicio" data-fade="4">
+      <!-- Tarjeta Capacitaciones -->
+      <a href="capacitaciones.html" class="card-especial capacitacion" data-fade="2">
         <span class="emoji">📚</span>
-        <h3>Capacitaciones</h3>
-        <p>Cursos 100 % prácticos para operar y mantener tu alberca como un profesional.</p>
+        <h3>Capacitación Profesional</h3>
+        <p>Cursos 100% prácticos para operar y mantener tu alberca como un experto</p>
+        <span class="cta-text">Conoce nuestros cursos →</span>
       </a>
     </div>
   </div>
@@ -407,14 +631,14 @@ header.hide{
     <h2 data-fade>Contáctanos</h2>
     <form id="contactForm" data-fade="2">
       <div>
-        <label for="nombre">🧍 Nombre</label>
+        <label for="nombre">👤 Nombre</label>
         <input type="text" id="nombre" name="Nombre" required placeholder="Tu nombre completo">
       </div>
       <div>
-      <label for="telefono">
-  <img src="img/social/whatsapp_navy.svg" alt="WhatsApp" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;">
-  Teléfono / WhatsApp
-</label>
+        <label for="telefono">
+          <img src="img/social/whatsapp_navy.svg" alt="WhatsApp" width="16" height="16" style="display:inline-block;vertical-align:middle;margin-right:4px;">
+          Teléfono / WhatsApp
+        </label>
         <input type="tel" id="telefono" name="Telefono" required placeholder="Ej. 331 000 0000">
       </div>
       <div>
@@ -426,6 +650,7 @@ header.hide{
           <option value="Reparaciones">Reparaciones profesionales</option>
           <option value="Venta equipos">Venta de equipos</option>
           <option value="Venta quimicos">Venta de químicos</option>
+          <option value="Capacitacion">Capacitación</option>
           <option value="Otro">Otro</option>
         </select>
       </div>
@@ -465,22 +690,26 @@ header.hide{
       <img src="img/social/whatsapp.svg" alt="WhatsApp" width="20" height="20"> WhatsApp
     </a>
   </div>
+  <p>© 2025 Albercas GDL | Todos los derechos reservados</p>
+</footer>
 
 <!-- BOTÓN WSP -->
 <a href="https://wa.me/3315351832" class="whatsapp-float" target="_blank" aria-label="Abrir chat de WhatsApp">
   <img src="img/social/whatsapp.svg" alt="WhatsApp" width="34" height="34">
 </a>
+
+<!-- SCRIPT AUTO-HIDE HEADER COMO EN QUÍMICOS -->
 <script>
 (function(){
   const header = document.querySelector('header');
   let lastY = 0;
-  const delta   = 10;   // ignora micro movimientos
-  const trigger = 150;  // px de scroll antes de ocultar
-
+  const delta = 10;
+  const trigger = 150;
+  
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     if (Math.abs(y - lastY) <= delta) return;
-
+    
     if (y > lastY && y > trigger) {
       header.classList.add('hide');    // bajando -> ocultar
     } else {
@@ -491,30 +720,30 @@ header.hide{
 })();
 </script>
 
-<!-- Banner “solo entregas en México” -->
+<!-- Banner "solo entregas en México" -->
 <div id="mxBanner" style="display:none">
   ✈️ <strong>Envíos solo dentro de México.</strong><br>
   Si te encuentras en otro país, escríbenos para cotizar opciones especiales.
   <button aria-label="Cerrar banner">&times;</button>
 </div>
+
 <script>
+// Banner México
 document.addEventListener('DOMContentLoaded', () => {
   const banner = document.getElementById('mxBanner');
-  const btn    = banner.querySelector('button');
+  const btn = banner.querySelector('button');
 
-  // 1️⃣  ¿ya lo cerró este visitante?
   if(!localStorage.getItem('mxBannerDismissed')){
-    banner.style.display='block';          // muéstralo
+    banner.style.display='block';
   }
 
-  // 2️⃣  Al cerrar, ocultamos y guardamos preferencia
   btn.addEventListener('click', () => {
     banner.style.display='none';
     localStorage.setItem('mxBannerDismissed','yes');
   });
 });
-</script>
-<script>
+
+// Formulario de contacto
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
@@ -531,163 +760,10 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   
   window.open(`https://wa.me/523315351832?text=${textoWhatsApp}`, '_blank');
   
-  // Limpiar formulario
   this.reset();
   alert('Tu mensaje se enviará por WhatsApp. Se abrirá una nueva ventana.');
 });
 </script>
-<script>
-// ============ PARTE 1: CONFIGURACIÓN DE SELECTORES ============
-// Para qué sirve: Hace que los botones de PayPal cambien según el tamaño elegido
-document.addEventListener('DOMContentLoaded', function() {
-    function configurarSelectoresPayPal() {
-        const selectores = document.querySelectorAll('.sel-pres');
-        
-        selectores.forEach(function(selector) {
-            const contenedor = selector.closest('.card-prod');
-            if (!contenedor) return;
-            
-            const botonPago = contenedor.querySelector('.btn-pay');
-            if (!botonPago) return;
-            
-            function actualizarLink() {
-                const opcionSeleccionada = selector.options[selector.selectedIndex];
-                const linkPayPal = opcionSeleccionada.getAttribute('data-pay');
-                
-                if (linkPayPal) {
-                    if (linkPayPal.startsWith('https://')) {
-                        botonPago.href = linkPayPal;
-                    } else {
-                        botonPago.href = `https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=${linkPayPal}`;
-                    }
-                }
-            }
-            
-            actualizarLink();
-            selector.addEventListener('change', actualizarLink);
-        });
-    }
-    
-    configurarSelectoresPayPal();
-});
 
-// ============ PARTE 2: PROTECCIÓN CONTRA INSPECCIÓN ============
-// Para qué sirve: Evita que copien fácilmente tus precios con F12
-document.addEventListener('keydown', function(e) {
-    // Bloquear F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
-    if(e.keyCode === 123 || 
-       (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) ||
-       (e.ctrlKey && e.keyCode === 85)) {
-        e.preventDefault();
-        return false;
-    }
-});
-
-// Deshabilitar clic derecho SOLO en las tarjetas de productos
-document.querySelectorAll('.card-prod').forEach(card => {
-    card.addEventListener('contextmenu', e => {
-        e.preventDefault();
-        alert('Por favor usa el botón de PayPal para comprar');
-        return false;
-    });
-});
-
-// ============ PARTE 3: ANTI-BOTS BÁSICO ============
-// Para qué sirve: Esconde botones de pago hasta verificar que es humano
-let clicksReales = 0;
-
-// Contar movimientos del mouse (los bots no mueven el mouse)
-document.addEventListener('mousemove', function() {
-    clicksReales++;
-});
-
-// Ocultar botones inicialmente y mostrar después de verificar
-document.querySelectorAll('.btn-pay').forEach(btn => {
-    btn.style.opacity = '0.3';
-    btn.style.pointerEvents = 'none';
-    
-    setTimeout(() => {
-        if(clicksReales > 3) { // Si movió el mouse más de 3 veces
-            btn.style.opacity = '1';
-            btn.style.pointerEvents = 'auto';
-        }
-    }, 1500); // Espera 1.5 segundos
-});
-
-// ============ PARTE 4: PREVENIR SPAM DE COMPRAS ============
-// Para qué sirve: Evita que alguien haga clic 100 veces seguidas
-let intentosPago = {};
-
-document.querySelectorAll('.btn-pay').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        const card = this.closest('.card-prod');
-        const producto = card.querySelector('h3').textContent;
-        const select = card.querySelector('.sel-pres');
-        const presentacion = select.options[select.selectedIndex].text;
-        const ahora = Date.now();
-        
-        // Verificar si ya intentó comprar esto hace menos de 5 segundos
-        if(intentosPago[producto] && (ahora - intentosPago[producto] < 5000)) {
-            e.preventDefault();
-            alert('Por favor espera 5 segundos antes de intentar de nuevo');
-            return false;
-        }
-        
-        intentosPago[producto] = ahora;
-        
-        // ============ PARTE 5: GUARDAR REGISTRO DE COMPRAS ============
-        // Para qué sirve: Backup por si PayPal falla o cliente dice que pagó
-        const pedido = {
-            producto: producto,
-            presentacion: presentacion,
-            fecha: new Date().toLocaleString(),
-            navegador: navigator.userAgent.substring(0, 50)
-        };
-        
-        // Guardar en navegador
-        localStorage.setItem('ultimaCompra', JSON.stringify(pedido));
-        
-        // Guardar historial (máximo 50 intentos)
-        let historial = JSON.parse(localStorage.getItem('historialCompras') || '[]');
-        historial.unshift(pedido);
-        if(historial.length > 50) historial = historial.slice(0, 50);
-        localStorage.setItem('historialCompras', JSON.stringify(historial));
-        
-        console.log('✅ Intento de compra registrado:', producto, presentacion);
-    });
-});
-
-// ============ PARTE 6: BOTÓN DE EMERGENCIA ============
-// Para qué sirve: Si PayPal falla, el cliente puede confirmar por WhatsApp
-window.addEventListener('load', function() {
-    // Verificar si hay compras pendientes sin confirmar
-    const ultimaCompra = localStorage.getItem('ultimaCompra');
-    if(ultimaCompra) {
-        const compra = JSON.parse(ultimaCompra);
-        // Si la compra fue hace menos de 1 hora
-        const hace1Hora = Date.now() - 3600000;
-        const fechaCompra = new Date(compra.fecha).getTime();
-        
-        if(fechaCompra > hace1Hora) {
-            // Crear botón flotante de confirmación
-            const botonConfirmar = document.createElement('div');
-            botonConfirmar.innerHTML = `
-                <div style="position:fixed; bottom:100px; right:20px; background:#25D366; 
-                            padding:15px; border-radius:10px; cursor:pointer; z-index:9998;
-                            box-shadow:0 4px 10px rgba(0,0,0,0.3);">
-                    <a href="https://wa.me/523315351832?text=Acabo%20de%20comprar%20${encodeURIComponent(compra.producto)}%20${encodeURIComponent(compra.presentacion)}"
-                       target="_blank" style="color:white; font-weight:bold;">
-                       ✅ Confirmar pedido por WhatsApp
-                    </a>
-                </div>
-            `;
-            document.body.appendChild(botonConfirmar);
-            
-            // Quitar después de 30 segundos
-            setTimeout(() => botonConfirmar.remove(), 30000);
-        }
-    }
-});
-</script>
 </body>
 </html>
