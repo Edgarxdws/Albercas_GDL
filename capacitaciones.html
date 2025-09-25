@@ -3,11 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Capacitaciones | Albercas GDL</title>
+<meta name="description" content="Curso profesional de mantenimiento de albercas. Aprende a mantener tu alberca como un experto con certificación.">
+<title>Capacitación Profesional | Albercas GDL</title>
 
-<!--  ✅ Reutilizamos exactamente el mismo <style> de tu index.
-      Copia y pega tu bloque <style> completo aquí.
-      Para no saturar este mensaje lo represento con [...]        -->
 <style>
 :root{
   --azul-marino:#004080;
@@ -15,238 +13,487 @@
   --blanco:#FFFFFF;
   --card:#063C6F;
   --card-hover:#085092;
+  --verde-success:#00C896;
+  --dorado:#FFD700;
   --suave:.25s ease;
   --radius:18px;
   scroll-behavior:smooth;
-}
-@media (max-width:768px){
-  /* HEADER */
-  #logo{height:140px;}
-  .cta-wsp{
-    top:8px;
-    right:8px;
-    padding:4px 10px;
-    font-size:.75rem;
-    border-radius:24px;
-    white-space:nowrap;
-  }
-}          /* ← 1️⃣  ESTA ES LA LLAVE QUE FALTABA  */
-
-/* si quieres versión súper compacta en pantallas muy angostas */
-@media (max-width:430px){
-  .cta-wsp{
-    font-size:.7rem;
-    padding:3px 8px;
-  }
 }
 
 /* RESET */
 *{box-sizing:border-box;margin:0;padding:0;}
 img{display:block;max-width:100%;}
 a{text-decoration:none;color:inherit;}
-body{padding-top:260px;
+body{
   font-family: "Poppins", Arial, sans-serif;
   background:#04263D;
   color:#fff;
   line-height:1.5;
+  padding-top:0;
 }
 
 /* FRANJA */
 .top-bar{background:var(--azul-cielo);height:18px;}
 
 /* HEADER */
-header{ background:var(--azul-marino); position:fixed; top:0; left:0; width:100%; z-index:999; box-shadow:… }
-
-header .wrap{
-  max-width:1200px;margin:auto;
-  padding:18px 20px 14px;
-  text-align:center;position:relative;
-}
-.logo-wrap{
-  display:flex;justify-content:center;align-items:center;
-  margin-bottom:6px;
-}
-#logo{height:240px;width:auto;}
-
-/* nav */
-nav ul{
-  list-style:none;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;
-  margin-top:6px;
-}
-nav a{
-  font-weight:600;position:relative;padding:4px 2px;
-}
-nav a::after{
-  content:"";position:absolute;left:0;bottom:-4px;height:2px;width:0;
-  background:var(--azul-cielo);transition:width var(--suave);
-}
-nav a:hover::after{width:100%;}
-
-/* CTA header */
-header .cta-wsp{
-  position:absolute;right:20px;top:32px;
-  background:var(--azul-cielo);color:#fff;padding:10px 18px;border-radius:28px;
-  font-size:.9rem;font-weight:600;display:flex;align-items:center;gap:6px;
-  box-shadow:0 2px 4px rgba(0,0,0,.25);
-  transition:transform var(--suave);
-}
-header .cta-wsp:hover{transform:scale(1.05);}
-
-/* SECCIONES */
-section{padding:80px 20px;scroll-margin-top:140px;}
-.container{max-width:1200px;margin:auto;}
-h1,h2,h3{font-weight:700;line-height:1.2;}
-h1{font-size:2.6rem;margin-bottom:18px;text-align:center;}
-h2{font-size:2rem;margin-bottom:36px;text-align:center;}
-h3{font-size:1.22rem;margin-bottom:10px;text-align:center;}
-p{margin-bottom:14px;font-size:1rem;text-align:center;}
-
-.btn{
-  display:inline-block;background:var(--azul-cielo);color:#fff;
-  padding:14px 26px;border-radius:30px;font-weight:600;
-  box-shadow:0 3px 6px rgba(0,0,0,.25);
-  transition:transform var(--suave);
-}
-.btn:hover{transform:translateY(-3px);}
-
-/* HERO */
-#inicio{text-align:center;background:var(--azul-marino);padding-top:120px;}
-#inicio p{max-width:680px;margin:0 auto 28px;}
-.hero-buttons{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
-
-/* SERVICIOS */
-#servicios .grid{
-  display:flex;flex-wrap:wrap;gap:28px;justify-content:center;
-}
-.card-servicio{
-  background:var(--card);padding:32px 26px;border-radius:var(--radius);
-  width:280px;text-align:center;
-  box-shadow:0 4px 10px rgba(0,0,0,.3);
-  transition:background var(--suave), transform var(--suave);
-}
-.card-servicio:hover{background:var(--card-hover);transform:translateY(-6px);}
-.card-servicio .emoji{font-size:2rem;display:block;margin-bottom:12px;}
-
-/* GALERÍA */
-#galeria .track{
-  display:grid;
-  grid-auto-flow:column;
-  grid-auto-columns:max-content;
-  gap:20px;
-  overflow-x:auto;
-  padding:10px 0 8px;
-  scroll-snap-type:x mandatory;
-  -webkit-overflow-scrolling:touch;
-}
-#galeria .track::-webkit-scrollbar{height:8px;}
-#galeria .track::-webkit-scrollbar-thumb{background:var(--azul-cielo);border-radius:8px;}
-#galeria figure{margin:0;scroll-snap-align:center;flex:0 0 auto;}
-#galeria img{
-  height:300px;width:auto;object-fit:cover;border-radius:16px;
-  transition:transform .3s ease;
-}
-#galeria img:hover{transform:scale(1.03);}
-
-/* CONTACTO */
-#contacto form{
-  max-width:760px;margin:0 auto;display:grid;gap:18px;
-}
-label{display:block;font-weight:600;margin-bottom:6px;text-align:left;}
-input,textarea,select{
-  width:100%;padding:14px 16px;border-radius:10px;
-  border:2px solid rgba(255,255,255,.15);
-  background:rgba(255,255,255,.08);color:#fff;font-size:1rem;
-  transition:border var(--suave), background var(--suave);
-}
-input:focus,textarea:focus,select:focus{
-  outline:none;border-color:var(--azul-cielo);
-  background:rgba(255,255,255,.12);
-}
-textarea{min-height:120px;resize:vertical;}
-#contacto .btn-enviar{justify-self:center;}
-
-/* CTA FINAL */
-#cta-final{
-  padding:120px 20px 160px;background:var(--azul-marino);
-  text-align:center;position:relative;
-}
-#wave{position:absolute;top:-1px;left:0;width:100%;height:120px;}
-#cta-final h2{margin-bottom:26px;}
-
-/* FOOTER */
-footer{
-  background:#02131F;padding:40px 20px 60px;
-  font-size:.9rem;color:#dbe8ff;text-align:center;
-}
-footer .social{
-  display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:18px;
-}
-footer .social a{display:flex;align-items:center;gap:6px;font-weight:600;opacity:.9;transition:opacity var(--suave), transform var(--suave);}
-footer .social a:hover{opacity:1;transform:translateY(-2px);}
-
-/* WHATSAPP FLOTANTE */
-.whatsapp-float{
-  position:fixed;width:60px;height:60px;bottom:32px;right:28px;
-  background:#25D366;border-radius:50%;
-  box-shadow:0 4px 10px rgba(0,0,0,.35);
-  display:flex;align-items:center;justify-content:center;
-  font-size:34px;z-index:9999;transition:transform var(--suave);
-}
-.whatsapp-float:hover{transform:scale(1.08);}
-
-/* FADES */
-[data-fade]{opacity:0;transform:translateY(24px);animation:fadeUp .8s forwards;}
-[data-fade="2"]{animation-delay:.15s;}
-[data-fade="3"]{animation-delay:.3s;}
-[data-fade="4"]{animation-delay:.45s;}
-/* ======== AUTO-HIDE HEADER ======== */
 header{
+  background:var(--azul-marino);
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:999;
+  box-shadow:0 2px 6px rgba(0,0,0,.35);
   transition:transform .35s ease;
   will-change:transform;
 }
+
 header.hide{
-  transform:translateY(-260px);
+  transform:translateY(-100%);
 }
-@keyframes fadeUp{to{opacity:1;transform:none;}}
-/* ────── RESPONSIVE ≤ 768 px ────── */
-@media (max-width:768px){   
 
+header .wrap{
+  max-width:1200px;
+  margin:auto;
+  padding:18px 20px 14px;
+  text-align:center;
+  position:relative;
+}
+
+.logo-wrap{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin-bottom:6px;
+}
+
+#logo{height:120px;width:auto;}
+
+/* CTA header */
+header .cta-wsp{
+  position:absolute;
+  right:20px;
+  top:32px;
+  background:var(--azul-cielo);
+  color:#fff;
+  padding:10px 18px;
+  border-radius:28px;
+  font-size:.9rem;
+  font-weight:600;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  box-shadow:0 2px 4px rgba(0,0,0,.25);
+  transition:transform var(--suave);
+}
+
+header .cta-wsp:hover{
+  transform:scale(1.05);
+}
+
+/* HERO SECTION */
+#hero{
+  background:linear-gradient(135deg, var(--azul-marino) 0%, #063C6F 100%);
+  padding:200px 20px 100px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+
+#hero::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%2300BFFF" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96V320H1392C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320H0V320Z"></path></svg>');
+  background-position:bottom;
+  background-repeat:no-repeat;
+  opacity:0.3;
+}
+
+.hero-content{
+  max-width:800px;
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+
+h1{
+  font-size:2.8rem;
+  margin-bottom:24px;
+  background:linear-gradient(90deg, #fff, var(--azul-cielo));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-subtitle{
+  font-size:1.2rem;
+  margin-bottom:36px;
+  color:rgba(255,255,255,0.9);
+}
+
+.badge{
+  display:inline-block;
+  background:var(--dorado);
+  color:var(--azul-marino);
+  padding:8px 20px;
+  border-radius:20px;
+  font-weight:700;
+  font-size:0.9rem;
+  margin-bottom:24px;
+  animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.05);}
+}
+
+/* FEATURES SECTION */
+#features{
+  padding:80px 20px;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+}
+
+h2{
+  font-size:2.3rem;
+  text-align:center;
+  margin-bottom:50px;
+}
+
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+  gap:30px;
+  margin-bottom:60px;
+}
+
+.feature-card{
+  background:var(--card);
+  padding:30px;
+  border-radius:var(--radius);
+  text-align:center;
+  transition:all var(--suave);
+  position:relative;
+  overflow:hidden;
+}
+
+.feature-card::before{
+  content:"";
+  position:absolute;
+  top:-2px;
+  left:-2px;
+  right:-2px;
+  bottom:-2px;
+  background:linear-gradient(45deg, var(--azul-cielo), transparent);
+  border-radius:var(--radius);
+  opacity:0;
+  transition:opacity var(--suave);
+  z-index:-1;
+}
+
+.feature-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.feature-card:hover::before{
+  opacity:1;
+}
+
+.feature-icon{
+  font-size:3rem;
+  margin-bottom:16px;
+  display:block;
+}
+
+.feature-title{
+  font-size:1.3rem;
+  margin-bottom:12px;
+  color:var(--azul-cielo);
+}
+
+.feature-desc{
+  font-size:0.95rem;
+  color:rgba(255,255,255,0.85);
+  line-height:1.6;
+}
+
+/* CURSO CONTENT */
+#curso-content{
+  background:linear-gradient(180deg, transparent, rgba(0,191,255,0.05));
+  padding:80px 20px;
+}
+
+.curso-box{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:50px;
+  max-width:900px;
+  margin:0 auto;
+  box-shadow:0 10px 40px rgba(0,0,0,0.3);
+  border:2px solid var(--azul-cielo);
+  position:relative;
+}
+
+.curso-box::before{
+  content:"CERTIFICACIÓN OFICIAL";
+  position:absolute;
+  top:-15px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--verde-success);
+  color:var(--azul-marino);
+  padding:5px 20px;
+  border-radius:15px;
+  font-weight:700;
+  font-size:0.85rem;
+}
+
+.contenido-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));
+  gap:20px;
+  margin:30px 0;
+}
+
+.contenido-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px;
+  background:rgba(0,191,255,0.1);
+  border-radius:10px;
+  transition:all var(--suave);
+}
+
+.contenido-item:hover{
+  background:rgba(0,191,255,0.2);
+  transform:translateX(5px);
+}
+
+.check-icon{
+  color:var(--verde-success);
+  font-size:1.5rem;
+  flex-shrink:0;
+}
+
+/* PRICING SECTION */
+#pricing{
+  padding:80px 20px;
+  text-align:center;
+}
+
+.price-card{
+  background:linear-gradient(135deg, var(--card), #085092);
+  border-radius:var(--radius);
+  padding:40px;
+  max-width:500px;
+  margin:0 auto;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+  position:relative;
+  overflow:hidden;
+}
+
+.price-card::before{
+  content:"OFERTA ESPECIAL";
+  position:absolute;
+  top:20px;
+  right:-30px;
+  background:red;
+  color:white;
+  padding:5px 40px;
+  transform:rotate(45deg);
+  font-weight:700;
+  font-size:0.8rem;
+}
+
+.price-amount{
+  font-size:3.5rem;
+  font-weight:700;
+  color:var(--azul-cielo);
+  margin:20px 0;
+}
+
+.price-currency{
+  font-size:1.5rem;
+  vertical-align:super;
+}
+
+.price-original{
+  text-decoration:line-through;
+  color:rgba(255,255,255,0.5);
+  font-size:1.2rem;
+  margin-bottom:10px;
+}
+
+.price-save{
+  background:var(--verde-success);
+  color:var(--azul-marino);
+  padding:5px 15px;
+  border-radius:15px;
+  display:inline-block;
+  margin-bottom:30px;
+  font-weight:600;
+}
+
+/* PAYMENT BUTTONS */
+.payment-buttons{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+  margin-top:30px;
+}
+
+.btn-payment{
+  background:var(--azul-cielo);
+  color:white;
+  padding:16px 30px;
+  border-radius:30px;
+  font-weight:600;
+  font-size:1.1rem;
+  border:none;
+  cursor:pointer;
+  transition:all var(--suave);
+  position:relative;
+  overflow:hidden;
+}
+
+.btn-payment:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,191,255,0.3);
+}
+
+.btn-payment.paypal{
+  background:linear-gradient(135deg, #FFC439, #FFB800);
+  color:var(--azul-marino);
+}
+
+.btn-payment.mercadopago{
+  background:linear-gradient(135deg, #00B1EA, #009EDB);
+}
+
+/* GARANTIA */
+.garantia{
+  background:rgba(0,200,150,0.1);
+  border:2px solid var(--verde-success);
+  border-radius:var(--radius);
+  padding:20px;
+  margin-top:40px;
+  text-align:center;
+}
+
+.garantia-title{
+  color:var(--verde-success);
+  font-size:1.2rem;
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+/* FOOTER */
+footer{
+  background:#02131F;
+  padding:40px 20px 60px;
+  text-align:center;
+}
+
+.social{
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin-bottom:20px;
+}
+
+.social a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#dbe8ff;
+  font-weight:600;
+  transition:all var(--suave);
+}
+
+.social a:hover{
+  transform:translateY(-3px);
+  color:var(--azul-cielo);
+}
+
+.social img{
+  width:24px;
+  height:24px;
+}
+
+/* RESPONSIVE */
+@media (max-width:768px){
+  #logo{height:80px;}
   
-  nav ul{gap:14px;font-size:.88rem;}
-
-  /* HERO */
-  #inicio{padding-top:80px;}          /* menos aire arriba */
+  header .cta-wsp{
+    top:8px;
+    right:8px;
+    padding:6px 12px;
+    font-size:.8rem;
+  }
+  
+  #hero{padding-top:150px;}
   h1{font-size:2rem;}
-  .hero-buttons{flex-direction:column;gap:12px;}
-
-  /* SERVICIOS */
-  #servicios .grid{
-    flex-direction:column;align-items:center;
+  
+  .curso-box{
+    padding:30px 20px;
   }
-  .card-servicio{
-    width:100%;max-width:340px;
-    padding:26px 22px;
+  
+  .price-amount{font-size:2.5rem;}
+  
+  .contenido-list{
+    grid-template-columns:1fr;
   }
-
-  /* GALERÍA */
-  #galeria img{height:220px;}         /* un poco más bajita */
-
-  /* CONTACTO */
-  #contacto form{gap:14px;}
-  label{font-size:.9rem;}
-  input,select,textarea{font-size:.9rem;}
-
-  /* CTA FINAL */
-  #cta-final{padding:90px 20px 120px;}
-  #cta-final h2{font-size:1.6rem;}
-
-  /* FOOTER */
-  footer{font-size:.8rem;padding:32px 20px 48px;}
 }
-/* ─── fin media query ─── */
 
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;}
+/* MODAL DE PAGO */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.8);
+  z-index:10000;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal-content{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:30px;
+  max-width:500px;
+  width:100%;
+  text-align:center;
+  position:relative;
+}
+
+.modal-close{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:none;
+  border:none;
+  color:white;
+  font-size:2rem;
+  cursor:pointer;
+}
+
+.modal h3{
+  margin-bottom:20px;
+  color:var(--azul-cielo);
 }
 </style>
 </head>
@@ -258,74 +505,293 @@ header.hide{
 <header>
   <div class="wrap">
     <div class="logo-wrap">
-      <a href="index.html"><img id="logo" src="img/logo.png" alt="Logo Albercas GDL"></a>
+      <a href="index.html">
+        <img id="logo" src="img/logo.png" alt="Logo Albercas GDL">
+      </a>
     </div>
-    <a href="https://wa.me/3315351832" target="_blank" class="cta-wsp">📲 Cotiza por WhatsApp</a>
+    <a href="https://wa.me/3315351832" target="_blank" class="cta-wsp">
+      <img src="img/social/whatsapp_navy.svg" alt="WhatsApp" width="20" height="20" style="display:inline-block;vertical-align:middle;margin-right:4px;">
+      Cotiza por WhatsApp
+    </a>
   </div>
 </header>
 
-<section id="curso">
-  <div class="container" data-fade>
+<!-- HERO SECTION -->
+<section id="hero">
+  <div class="hero-content">
+    <span class="badge">🏆 CERTIFICACIÓN PROFESIONAL</span>
     <h1>Curso Integral de Mantenimiento de Albercas</h1>
-    <p style="max-width:680px;margin:0 auto 24px;">
-      Aprende a mantener, limpiar y equilibrar químicamente tu alberca sin depender de terceros.
-      Incluye manual descargable en PDF&nbsp;+&nbsp;5&nbsp;videos paso&nbsp;a&nbsp;paso.
+    <p class="hero-subtitle">
+      Conviértete en un experto certificado en mantenimiento de albercas.<br>
+      Aprende de profesionales con más de 15 años de experiencia.
     </p>
+  </div>
+</section>
 
-    <div style="display:flex;flex-direction:column;align-items:center;gap:24px;">
-      <ul style="text-align:left;max-width:520px;line-height:1.6;">
-        <li>✅ Principios de filtración y circulación.</li>
-        <li>✅ Cómo medir y ajustar pH, alcalinidad y cloro.</li>
-        <li>✅ Checklist semanal de limpieza.</li>
-        <li>✅ Tips para ahorrar químicos y energía.</li>
-      </ul>
-
-      <h2 style="font-size:2.2rem;margin:0;">$1,200 MXN</h2>
-
-      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;">
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XXXX"
-     class="btn" target="_blank">PayPal</a>
-
-  <a href="https://buy.stripe.com/YOUR_PAYMENT_LINK"
-     class="btn" target="_blank">Tarjeta (Stripe)</a>
-
-  <a href="https://mpago.li/XXXXXXXX"
-     class="btn" target="_blank">MercadoPago</a>
-</div>
-
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <h2>¿Qué Aprenderás?</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🔬</span>
+        <h3 class="feature-title">Química del Agua</h3>
+        <p class="feature-desc">
+          Domina el balance perfecto de pH, alcalinidad y cloro. 
+          Aprende a diagnosticar y solucionar cualquier problema químico.
+        </p>
+      </div>
       
+      <div class="feature-card">
+        <span class="feature-icon">⚙️</span>
+        <h3 class="feature-title">Sistemas de Filtración</h3>
+        <p class="feature-desc">
+          Comprende el funcionamiento de bombas, filtros y sistemas de circulación. 
+          Mantenimiento preventivo y correctivo.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <h3 class="feature-title">Prevención de Problemas</h3>
+        <p class="feature-desc">
+          Identifica y previene algas, agua turbia, manchas y otros problemas comunes 
+          antes de que ocurran.
+        </p>
+      </div>
+      
+      <div class="feature-card">
+        <span class="feature-icon">💰</span>
+        <h3 class="feature-title">Ahorro Inteligente</h3>
+        <p class="feature-desc">
+          Técnicas profesionales para reducir hasta un 40% el consumo de químicos 
+          y energía eléctrica.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
-<footer style="margin-top:120px;">
-  <div class="social">
-    <a href="https://www.instagram.com/albercasgdl_jrh?igsh=dXg3YW4xbXNtc2tp&utm_source=qr" target="_blank">📷 Instagram</a>
-    <a href="https://www.facebook.com/share/172vVMEHui/?mibextid=wwXIfr"  target="_blank">📘 Facebook</a>
-    <a href="https://www.tiktok.com/@albercasgdl?_t=ZS-8yOKGw2k0q9&_r=1"   target="_blank">🎵 TikTok</a>
+<!-- CURSO CONTENT -->
+<section id="curso-content">
+  <div class="container">
+    <h2>Contenido del Curso</h2>
+    
+    <div class="curso-box">
+      <h3 style="color:var(--azul-cielo);margin-bottom:30px;">
+        Lo que incluye tu certificación:
+      </h3>
+      
+      <div class="contenido-list">
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Curso interactivo de alto perfil</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Refuerzo de conocimiento</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Principios de filtración y circulación</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Medición y ajuste de pH, alcalinidad y cloro</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Checklist semanal de mantenimiento</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Guía de solución de problemas comunes</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Calculadora de químicos personalizada</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Certificado de finalización con tu nombre</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Acceso de por vida + actualizaciones</span>
+        </div>
+        <div class="contenido-item">
+          <span class="check-icon">✅</span>
+          <span>Respalda por expertos</span>
+        </div>
+      
   </div>
-  <p>© 2025 Albercas GDL.</p>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <h2>Inversión en tu Futuro</h2>
+    
+    <div class="price-card">
+      <p class="price-original">Precio regular: $2,400 MXN</p>
+      <div class="price-save">AHORRA 50% HOY</div>
+      
+      <div class="price-amount">
+        <span class="price-currency">$</span>1,200
+        <span style="font-size:1.2rem;"> MXN</span>
+      </div>
+      
+      <p style="margin:20px 0;">
+        <strong>Un solo pago • Acceso inmediato • Sin mensualidades</strong>
+      </p>
+      
+      <div class="payment-buttons">
+        <button class="btn-payment paypal" onclick="iniciarPago('paypal')">
+          💳 Pagar con PayPal / Tarjeta
+        </button>
+
+      </div>
+      
+      <div class="garantia">
+        <p class="garantia-title">🛡️ Garantía de 30 días</p>
+        <p>Si no quedas 100% satisfecho, te devolvemos tu dinero sin preguntas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="social">
+    <a href="https://www.instagram.com/albercasgdl_jrh?igsh=dXg3YW4xbXNtc2tp&utm_source=qr" target="_blank">
+      <img src="img/social/instagram.svg" alt="Instagram"> Instagram
+    </a>
+    <a href="https://www.facebook.com/share/172vVMEHui/?mibextid=wwXIfr" target="_blank">
+      <img src="img/social/facebook.svg" alt="Facebook"> Facebook
+    </a>
+    <a href="https://www.tiktok.com/@albercasgdl?_t=ZS-8yOKGw2k0q9&_r=1" target="_blank">
+      <img src="img/social/tiktok.svg" alt="TikTok"> TikTok
+    </a>
+    <a href="https://wa.me/3315351832" target="_blank">
+      <img src="img/social/whatsapp.svg" alt="WhatsApp"> WhatsApp
+    </a>
+  </div>
+  <p style="color:#8899aa;margin-top:20px;">
+    © 2025 Albercas GDL | Todos los derechos reservados
+  </p>
 </footer>
 
+<!-- MODAL -->
+<div id="paymentModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="cerrarModal()">&times;</button>
+    <h3>Procesando tu pago...</h3>
+    <p>Serás redirigido a la plataforma de pago segura.</p>
+    <div id="modalMessage"></div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
 <script>
+// Auto-hide header
 (function(){
   const header = document.querySelector('header');
   let lastY = 0;
-  const delta   = 10;   // ignora micro movimientos
-  const trigger = 150;  // px de scroll antes de ocultar
-
+  const delta = 10;
+  const trigger = 150;
+  
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
     if (Math.abs(y - lastY) <= delta) return;
-
+    
     if (y > lastY && y > trigger) {
-      header.classList.add('hide');    // bajando -> ocultar
+      header.classList.add('hide');
     } else {
-      header.classList.remove('hide'); // subiendo -> mostrar
+      header.classList.remove('hide');
     }
     lastY = y;
   }, { passive:true });
 })();
+
+// Sistema de pago
+function iniciarPago(metodo) {
+  // Mostrar modal
+  document.getElementById('paymentModal').style.display = 'flex';
+  
+  // Generar token único para esta sesión
+  const token = generarToken();
+  sessionStorage.setItem('payment_token', token);
+  
+  if(metodo === 'paypal') {
+    // Aquí va tu link de PayPal real
+    setTimeout(() => {
+      window.location.href = 'https://www.paypal.com/paypalme/albercasgdl/1200MXN';
+    }, 1500);
+  } else if(metodo === 'mercadopago') {
+    // Aquí va tu link de MercadoPago real
+    setTimeout(() => {
+      window.location.href = 'https://mpago.la/TUCODIGOAQUI';
+    }, 1500);
+  }
+}
+
+function cerrarModal() {
+  document.getElementById('paymentModal').style.display = 'none';
+}
+
+// Generar token único
+function generarToken() {
+  return 'tkn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+}
+
+// Verificar pago al cargar la página
+window.addEventListener('load', function() {
+  // Verificar si viene de un pago completado (esto lo configurarías con PayPal IPN o similar)
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get('payment') === 'success') {
+    mostrarAccesoCurso();
+  }
+});
+
+// Función para mostrar acceso al curso (después del pago)
+function mostrarAccesoCurso() {
+  const token = sessionStorage.getItem('payment_token');
+  if(token) {
+    // Encriptar el link del curso
+    const cursoLink = btoa('https://app.cotraining.ai/courses-pro/68d455637593acf94d8ce120/?sharing=true&token=' + token);
+    
+    // Mostrar modal con acceso
+    const modal = document.getElementById('paymentModal');
+    modal.style.display = 'flex';
+    document.getElementById('modalMessage').innerHTML = `
+      <div style="background:var(--verde-success);padding:20px;border-radius:10px;margin-top:20px;">
+        <h3 style="color:white;">¡Pago exitoso!</h3>
+        <p>Tu acceso al curso está listo:</p>
+        <button onclick="abrirCurso('${cursoLink}')" class="btn-payment" style="margin-top:15px;">
+          🎓 Acceder al Curso Ahora
+        </button>
+      </div>
+    `;
+    
+    // Guardar en localStorage para acceso posterior
+    localStorage.setItem('curso_access', cursoLink);
+  }
+}
+
+// Función para abrir el curso
+function abrirCurso(encodedLink) {
+  const link = atob(encodedLink);
+  window.open(link, '_blank');
+}
+
+// Protección anti-copia
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if(e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74))) {
+    e.preventDefault();
+  }
+});
 </script>
 
 </body>
